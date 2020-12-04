@@ -1,22 +1,164 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
+  "name": "electron-update-example",
+  "productName": "electron-update-example",
+  "version": "1.0.1",
+  "description": "My Electron application description",
+  "main": ".webpack/main",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GelmanDan/electron-update-example.git"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts .",
+    "dist": "build"
+  },
+  "keywords": [],
+  "author": "Daniel Gelman",
+  "license": "MIT",
+  "build": {
+    "appId": "gelmanDaniel.electron-table-app-win32",
+    "protocols": {
+      "name": "electronUpdateExample",
+      "schemes": [
+        "electronUpdateExample"
+      ]
+    },
+    "extends": null,
+    "mac": {
+      "category": "public.app-category.Reference"
+    },
+    "win": {
+      "target": "squirrel"
+    }
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./src/main/favicon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "tableting_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-wix",
+          "config": {
+            "ui": {
+              "chooseDirectory": true,
+              "setupIcon": "./src/main/favicon.png",
+              "icon": "./src/main/favicon.png"
+            }
+          }
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./public/index.html",
+                  "js": "./src/renderer/renderer.tsx",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
   "devDependencies": {
-    "electron": "^11.0.3"
+    "@electron-forge/cli": "^6.0.0-beta.50",
+    "@electron-forge/maker-deb": "^6.0.0-beta.50",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.50",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.50",
+    "@electron-forge/maker-zip": "^6.0.0-beta.50",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.50",
+    "@hot-loader/react-dom": "^16.13.0",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.2",
+    "electron": "8.2.0",
+    "electron-builder": "^22.4.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-winstaller": "^4.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
+    "node-loader": "^0.6.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@electron-forge/maker-wix": "^6.0.0-beta.50",
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@types/react-dom": "^16.9.6",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "ejs": "^3.0.2",
+    "electron-db": "^0.15.4",
+    "electron-log": "^4.1.1",
+    "electron-rebuild": "^1.10.1",
+    "electron-redux": "^1.5.3",
+    "electron-updater": "^4.3.5",
+    "express-async-await": "^1.1.0",
+    "fetch": "^1.1.0",
+    "fs": "0.0.1-security",
+    "http-proxy-middleware": "^1.0.3",
+    "image-to-base64": "^2.1.1",
+    "jquery": "^3.5.1",
+    "mongodb": "^3.5.5",
+    "node-fetch": "^2.6.0",
+    "pg": "^8.0.0",
+    "popper.js": "^1.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.20",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1",
+    "react-webcam": "^5.0.1",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.1",
+    "squirrel": "^1.0.0",
+    "update-electron-app": "^2.0.1",
+    "winston": "^3.2.1",
+    "ws": "^7.3.1"
   }
 }
