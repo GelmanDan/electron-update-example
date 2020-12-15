@@ -15,9 +15,11 @@ module.exports = {
     rules
   },
   plugins: [
-    new CopyPlugin([
-      { from: path.resolve(__dirname, 'public/favicon.ico'), to: '' }
-    ]),
+    new CopyPlugin(
+      [
+          {from: path.resolve(__dirname, 'public/favicon.ico'), to: ''}
+          ]
+    ),
   ],
   resolve: {
     alias: {

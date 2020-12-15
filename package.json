@@ -4,10 +4,6 @@
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GelmanDan/electron-update-example.git"
-  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -19,22 +15,6 @@
   "keywords": [],
   "author": "Daniel Gelman",
   "license": "MIT",
-  "build": {
-    "appId": "gelmanDaniel.electron-table-app-win32",
-    "protocols": {
-      "name": "electronUpdateExample",
-      "schemes": [
-        "electronUpdateExample"
-      ]
-    },
-    "extends": null,
-    "mac": {
-      "category": "public.app-category.Reference"
-    },
-    "win": {
-      "target": "squirrel"
-    }
-  },
   "config": {
     "forge": {
       "packagerConfig": {
@@ -44,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "tableting_app"
+            "name": "electron-update-example"
           }
         },
         {
@@ -60,16 +40,6 @@
         {
           "name": "@electron-forge/maker-rpm",
           "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-wix",
-          "config": {
-            "ui": {
-              "chooseDirectory": true,
-              "setupIcon": "./src/main/favicon.png",
-              "icon": "./src/main/favicon.png"
-            }
-          }
         }
       ],
       "plugins": [
@@ -93,13 +63,13 @@
     }
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "@electron-forge/cli": "^6.0.0-beta.50",
     "@electron-forge/maker-deb": "^6.0.0-beta.50",
     "@electron-forge/maker-rpm": "^6.0.0-beta.50",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.50",
     "@electron-forge/maker-zip": "^6.0.0-beta.50",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.50",
-    "@hot-loader/react-dom": "^16.13.0",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
@@ -134,7 +104,6 @@
     "ejs": "^3.0.2",
     "electron-db": "^0.15.4",
     "electron-log": "^4.1.1",
-    "electron-rebuild": "^1.10.1",
     "electron-redux": "^1.5.3",
     "electron-updater": "^4.3.5",
     "express-async-await": "^1.1.0",
@@ -156,8 +125,6 @@
     "serve-favicon": "^2.5.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.1",
-    "squirrel": "^1.0.0",
-    "update-electron-app": "^2.0.1",
     "winston": "^3.2.1",
     "ws": "^7.3.1"
   }
